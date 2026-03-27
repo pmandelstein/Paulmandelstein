@@ -282,10 +282,16 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
+    nav { padding: 0.8rem 1rem; flex-wrap: nowrap; }
+    .nav-name { font-size: 0.85rem; white-space: nowrap; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.65rem; letter-spacing: 0.1em; }
     .hero { padding: 7rem 1.5rem 4rem; }
-    #books, #speaking { padding: 5rem 1.5rem; }
+    #books, #speaking { padding: 3rem 1rem; }
+    .books-header { margin-bottom: 2rem; }
+    .book-category { margin-bottom: 2.5rem; }
+    .book-meta h3 { font-size: 0.9rem; }
+    .book-meta p { font-size: 0.8rem; }
     .about-inner { grid-template-columns: 1fr; gap: 3rem; }
     #about { padding: 5rem 1.5rem; }
     .speaking-header { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -293,7 +299,7 @@
     .speaking-item:nth-child(even) { padding-left: 0; border-left: none; }
     #contact { padding: 5rem 1.5rem; }
     footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-    .books-grid, .books-grid-2 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .books-grid, .books-grid-2, .books-grid-2.two-col { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   }
   @media (max-width: 480px) {
     .hero-ring-1, .hero-ring-2, .hero-ring-3 { display: none; }
@@ -607,7 +613,7 @@
     <p class="section-label">Get in Touch</p>
     <h2 class="contact-title">Every good thing<br>begins with a<br><em>conversation.</em></h2>
     <p class="contact-sub">For speaking engagements, workshop bookings, media inquiries, or simply to say hello — Paul reads every message.</p>
-    <a href="mailto:pmandelstein@gmail.com" class="contact-email">pmandelstein@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#5c2c313d323839302f283935321c3b313d3530723f3331" class="contact-email"><span class="__cf_email__" data-cfemail="daaab7bbb4bebfb6a9aebfb3b49abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a>
   </div>
 </section>
 
@@ -618,7 +624,7 @@
   <span class="footer-mark">Liminal Arts · Bend, Oregon</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
 document.querySelectorAll(’.book-cover img’).forEach(img => {
 img.addEventListener(‘error’, function() {
@@ -626,6 +632,3 @@ this.style.display = ‘none’;
 const cover = this.closest(’.book-cover’);
 const colors = [’#1e2d45’,’#3d2010’,’#1a2c1a’,’#2e1f38’,’#2a1a1a’,’#1a1a2e’,’#2a1a10’,’#1a2a1a’];
 const idx = Array.from(document.querySelectorAll(’.book-cover’)).indexOf(cover);
-cover.style.background = colors[idx % colors.length];
-const title = cover.closest(’.book-item’).querySelector(‘h3’).textContent;
-cover.innerHTML = `<div style=“position:absolute;inset:0;display:flex;align-items:flex-end;padding:1rem;
