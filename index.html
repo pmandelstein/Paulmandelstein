@@ -77,10 +77,14 @@
     position: relative;
     overflow: hidden;
   }
-  .hero-ring { position: absolute; border-radius: 50%; border: 1px solid; pointer-events: none; }
-  .hero-ring-1 { width: 520px; height: 520px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(181,97,58,0.12); }
-  .hero-ring-2 { width: 760px; height: 760px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(107,124,94,0.08); }
-  .hero-ring-3 { width: 1020px; height: 1020px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(196,154,60,0.07); }
+  .hero-ring { position: absolute; border-radius: 50%; border: 1px solid; pointer-events: none; will-change: transform; }
+  .hero-ring-1 { width: 520px; height: 520px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(181,97,58,0.12); animation: ringSpin 70s linear infinite; }
+  .hero-ring-2 { width: 760px; height: 760px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(107,124,94,0.08); animation: ringSpin 100s linear infinite reverse; }
+  .hero-ring-3 { width: 1020px; height: 1020px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(196,154,60,0.07); animation: ringSpin 140s linear infinite; }
+  @keyframes ringSpin {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to   { transform: translate(-50%,-50%) rotate(360deg); }
+  }
 
   .ornament { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; }
   .ornament-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--light-rule)); }
@@ -96,11 +100,23 @@
     font-family: 'Playfair Display', serif; font-weight: 400;
     font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 0.15em;
   }
-  .hero-title em { font-style: italic; color: var(--terra); }
+  .hero-title em {
+    font-style: italic;
+    background: linear-gradient(100deg, var(--terra), var(--gold), var(--terra));
+    background-size: 200% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmer 7s ease-in-out infinite;
+    display: inline-block; transition: opacity 0.4s ease;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
   .hero-sub {
     font-family: 'Lora', serif; font-style: italic; font-size: 1.15rem;
     color: var(--muted); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7;
   }
+  .hero-ctas { display: flex; gap: 1.1rem; justify-content: center; flex-wrap: wrap; }
   .hero-cta {
     display: inline-block; font-family: 'Raleway', sans-serif; font-weight: 500;
     font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -108,6 +124,10 @@
     padding: 0.85rem 2.2rem; transition: background 0.25s;
   }
   .hero-cta:hover { background: var(--ink); }
+  .hero-cta-outline {
+    background: transparent; border: 1px solid var(--terra); color: var(--terra);
+  }
+  .hero-cta-outline:hover { background: var(--terra); color: var(--warm-white); }
 
   /* ── QUOTE BAND ── */
   .quote-band { background: var(--sage); padding: 3.5rem 4rem; text-align: center; }
@@ -364,14 +384,17 @@
   <div class="hero-ring hero-ring-3"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Author · Publisher · Zen Practitioner</p>
-    <h1 class="hero-title">Words that find you<br><em>where you are.</em></h1>
+    <h1 class="hero-title">Words that find you<br><em id="heroPhrase">where you are.</em></h1>
     <div class="ornament">
       <div class="ornament-line"></div>
       <span class="ornament-glyph">❧</span>
       <div class="ornament-line right"></div>
     </div>
     <p class="hero-sub">Fables, parenting wisdom, and folktales for the inner life — for readers of all ages who slow down and listen.</p>
-    <a href="#books" class="hero-cta">Explore the Books</a>
+    <div class="hero-ctas">
+      <a href="#books" class="hero-cta">Explore the Books</a>
+      <a href="#wisdom-table" class="hero-cta hero-cta-outline">Visit The Wisdom Table</a>
+    </div>
   </div>
 </section>
 
@@ -687,11 +710,51 @@
   <span class="footer-mark">Liminal Arts · Bend, Oregon</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
 
-document.querySelectorAll(’.book-cover img’).forEach(img => {
-img.addEventListener(‘error’, function() {
-this.style.display = ‘none’;
-const cover = this.closest(’.book-cover’);
-const colors = [’#1e2d45’,’#3d2010’,’#1a2c1a’,’#2e1f38’,’#2a1a1a’,’#1a1a2e’,’#2a1a10’,’#1a2a1a’];
-const idx = Array.from(document.querySelectorAll(’.book-cover’)).indexOf(cover);
+document.querySelectorAll('.book-cover img').forEach(img => {
+  img.addEventListener('error', function() {
+    this.style.display = 'none';
+    const cover = this.closest('.book-cover');
+    const colors = ['#1e2d45','#3d2010','#1a2c1a','#2e1f38','#2a1a1a','#1a1a2e','#2a1a10','#1a2a1a'];
+    const idx = Array.from(document.querySelectorAll('.book-cover')).indexOf(cover);
+    if (cover) cover.style.background = colors[idx % colors.length];
+  });
+});
+
+// Cycling hero phrase
+(function() {
+  const phrases = ['where you are.', 'when you need them.', 'however you arrive.', 'long after the page turns.'];
+  const el = document.getElementById('heroPhrase');
+  if (!el) return;
+  let i = 0;
+  setInterval(() => {
+    el.style.opacity = 0;
+    setTimeout(() => {
+      i = (i + 1) % phrases.length;
+      el.textContent = phrases[i];
+      el.style.opacity = 1;
+    }, 400);
+  }, 3400);
+})();
+
+// Gentle mouse parallax on hero rings
+(function() {
+  const rings = document.querySelectorAll('.hero-ring');
+  if (!rings.length || window.matchMedia('(pointer: coarse)').matches) return;
+  window.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+    rings.forEach((ring, i) => {
+      const depth = (i + 1) * 6;
+      ring.style.marginLeft = (x * depth) + 'px';
+      ring.style.marginTop = (y * depth) + 'px';
+    });
+  });
+})();
+
+</script>
+
+</body>
+</html>
