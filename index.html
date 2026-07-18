@@ -267,6 +267,37 @@
   .contact-email { display: inline-block; font-family: 'Raleway', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); background: var(--gold); text-decoration: none; padding: 1rem 2.8rem; transition: background 0.25s, color 0.25s; }
   .contact-email:hover { background: var(--terra); color: var(--warm-white); }
 
+  /* ── WISDOM TABLE (FEATURED) ── */
+  #wisdom-table { background: var(--parchment-deep); padding: 8rem 4rem; position: relative; overflow: hidden; }
+  #wisdom-table::before {
+    content: '✦'; position: absolute; top: -80px; left: -60px;
+    font-size: 340px; color: rgba(196,154,60,0.07); pointer-events: none; line-height: 1;
+  }
+  .wisdom-header { max-width: 780px; margin: 0 auto 4rem; text-align: center; position: relative; z-index: 1; }
+  .wisdom-intro {
+    font-family: 'Lora', serif; font-style: italic; font-size: 1.2rem;
+    color: var(--muted); line-height: 1.85; margin-top: 1.2rem;
+  }
+  .wisdom-body {
+    max-width: 1140px; margin: 0 auto; display: grid;
+    grid-template-columns: 7fr 5fr; gap: 5rem; align-items: start;
+    position: relative; z-index: 1;
+  }
+  .wisdom-left p { font-size: 1.08rem; line-height: 1.9; color: #3d3425; margin-bottom: 1.6rem; }
+  .wisdom-left strong { color: var(--ink); font-weight: 500; }
+  .wisdom-left .hero-cta { margin-top: 0.5rem; }
+  .wisdom-right-label {
+    font-family: 'Raleway', sans-serif; font-weight: 400; font-size: 0.68rem;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--light-rule);
+  }
+  .wisdom-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+  .wisdom-list li {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    font-family: 'Lora', serif; font-size: 0.95rem; color: var(--muted);
+    line-height: 1.6; font-style: italic;
+  }
+
   /* ── FOOTER ── */
   footer { background: #1e160c; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
   footer p { font-family: 'Raleway', sans-serif; font-weight: 300; font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(250,246,239,0.28); }
@@ -298,6 +329,8 @@
     .speaking-grid { grid-template-columns: 1fr; }
     .speaking-item:nth-child(even) { padding-left: 0; border-left: none; }
     #contact { padding: 5rem 1.5rem; }
+    #wisdom-table { padding: 5rem 1.5rem; }
+    .wisdom-body { grid-template-columns: 1fr; gap: 2.5rem; }
     footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     .books-grid, .books-grid-2, .books-grid-2.two-col { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   }
@@ -315,6 +348,7 @@
 <nav>
   <a href="#" class="nav-name">Paul Mandelstein</a>
   <ul class="nav-links">
+    <li><a href="#wisdom-table">The Wisdom Table</a></li>
     <li><a href="#books">Books</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#speaking">Speaking</a></li>
@@ -338,6 +372,32 @@
     </div>
     <p class="hero-sub">Fables, parenting wisdom, and folktales for the inner life — for readers of all ages who slow down and listen.</p>
     <a href="#books" class="hero-cta">Explore the Books</a>
+  </div>
+</section>
+
+<!-- WISDOM TABLE (FEATURED) -->
+
+<section id="wisdom-table">
+  <div class="wisdom-header">
+    <p class="section-label">Featured Project</p>
+    <h2 class="section-title">Humanity's <em>living library</em> of meaning.</h2>
+    <p class="wisdom-intro">The Wisdom Table is a nonprofit gathering place for the world's wisdom traditions — open to anyone still asking the deep questions, and belonging to no single tradition.</p>
+  </div>
+  <div class="wisdom-body">
+    <div class="wisdom-left">
+      <p>Paul founded The Wisdom Table to build something rare: a single home for the teachers, traditions, and questions that have carried people through — mythology and folklore, contemplative practice, feminine wisdom, and the search for joy and equanimity, all held in one open library.</p>
+      <p>It's a living project, growing entry by entry, built for readers who want to sit with the world's wisdom traditions side by side rather than in separate rooms.</p>
+      <a href="https://wisdomtable.ai" target="_blank" class="hero-cta">Visit The Wisdom Table →</a>
+    </div>
+    <div class="wisdom-right">
+      <p class="wisdom-right-label">Inside the Library</p>
+      <ul class="wisdom-list">
+        <li><span class="cred-dot"></span>The Hall of Humanity — teachers and figures across traditions, including Joseph Campbell and Suzuki Roshi</li>
+        <li><span class="cred-dot"></span>New mythology entries</li>
+        <li><span class="cred-dot"></span>Gender &amp; Feminine Wisdom</li>
+        <li><span class="cred-dot"></span>Joy &amp; Equanimity</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -553,6 +613,7 @@
       <img src="data:image/jpeg;base64,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"
                alt="Paul Mandelstein" class="author-photo">
       <ul class="credential-list">
+        <li><span class="cred-dot"></span>Founder, The Wisdom Table — humanity's living library of meaning</li>
         <li><span class="cred-dot"></span>Originator of the For Dummies book format</li>
         <li><span class="cred-dot"></span>Founder, Quantum Publishing — personal telecommunications technologies (acquired by John Wiley &amp; Sons)</li>
         <li><span class="cred-dot"></span>Co-founder, The Book Publishing Company — pioneering publisher of vegan cooking, natural home birth, and intentional community living</li>
@@ -568,6 +629,7 @@
       <p>Paul Mandelstein has spent his life at the edge of things — where publishing meets wisdom, where fatherhood meets spiritual practice, where story meets the examined life. He is an author, publisher, teacher, and Zen practitioner who has been asking the deep questions for more than six decades.</p>
       <p>As co-founder of <strong>The Book Publishing Company</strong>, Paul was a pioneering publisher of the natural living movement in the early 1970s — producing some of the first books on vegan cooking, natural home birth, and intentional community living, and originating the For Dummies format with the <em>Big Dummy's Guide to C.B. Radio</em>. As founder of <strong>Quantum Publishing</strong>, he focused on personal telecommunications technologies until its acquisition by John Wiley &amp; Sons. As founder of the <strong>Father Resource Network</strong> and author of three books on divorced fatherhood, he has helped families heal. And through <strong>Small Wisdoms</strong> — a lifetime's distillation into 128 fables — he offers something rarer: a book that reads you back.</p>
       <p>Paul is also the creator of a body of <strong>new mythology folktales</strong> — illustrated stories that reimagine ancient archetypal wisdom experiences for a modern audience, offering sacred narrative outside the boundaries of traditional religion. <em>The Nightingale and the Wind</em>, <em>Queen Emmali and the Enchanted Lute</em>, and <em>Santa's Surprising Adventure</em> are the first works in this ongoing project.</p>
+      <p>Most recently, Paul founded <strong>The Wisdom Table</strong> — a nonprofit living library of meaning that gathers the world's wisdom traditions, teachers, and questions in one open place, free for anyone still searching.</p>
       <p>He lives in Bend, Oregon, where he runs <strong>Liminal Arts</strong>, his independent imprint. He is a devoted father of four, grandfather of four, and a student of life in the fullest sense.</p>
     </div>
   </div>
